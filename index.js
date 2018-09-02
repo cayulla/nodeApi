@@ -25,8 +25,10 @@ i18n.configure({
     register:global
 });
 app.use(i18n.init);
+
 //Poner las rutas debajo del i18n
 app.use('/usuarios', require('./routes/usuarios'));
+app.use('/anuncios', require('./routes/anuncios'));
 
 //Gestion de Errores
 app.use((err, req, res, next)=>{
