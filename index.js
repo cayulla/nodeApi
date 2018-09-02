@@ -4,22 +4,39 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const path = require('path');
+const i18n = require('i18n');
+
+require('./lib/connMongoDB');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').__express);
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.get('/',(req,res,next)=>{
     res.render('welcome',{title:'API Zone for NodePop'});
 });
 
-app.use((err,req,res,next)=>{
+i18n.configure({
+    directory: __dirname+'/locales',
+    defaultLocale: 'en',
+    register:global
+});
+app.use(i18n.init);
+//Poner las rutas debajo del i18n
+app.use('/usuarios', require('./routes/usuarios'));
+
+//Gestion de Errores
+app.use((err, req, res, next)=>{
     res.status(err.status || 500);
 
-    res.locals.message = '';
-    res.locals.error = err;
-
-    res.render('error');
+    return res.json({ sucess: false,
+        error: { 
+            code: err.code || err.status || 500, 
+            message: err.message, err: {} }
+    });
 })
 
 server.listen(3002,()=>{

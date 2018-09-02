@@ -1,0 +1,46 @@
+{ "anuncios":[
+    {
+        "tags" : [ 
+            "motor", 
+            "lifestyle"
+        ],
+        "nombre" : "Bicicleta",
+        "venta" : true,
+        "precio" : 250.2,
+        "foto" : "/anuncios/bicicleta.jpg"
+    },
+    {
+        "tags" : [ 
+            "motor", 
+            "lifestyle", 
+            "sports"
+        ],
+        "nombre" : "Bicicleta Electrica",
+        "venta" : true,
+        "precio" : 3500.8,
+        "foto" : "/anuncios/ElectricBike.png"
+    },
+    {
+        "tags" : [ 
+            "motor", 
+            "lifestyle", 
+            "sports", 
+            "mobility"
+        ],
+        "nombre" : "Mini Scooter",
+        "venta" : true,
+        "precio" : 1500.5,
+        "foto" : "/anuncios/miniScooter.jpg"
+    },{
+        "tags" : [ 
+            "motor", 
+            "lifestyle", 
+            "sports", 
+            "mobility"
+        ],
+        "nombre" : "Scooter",
+        "venta" : true,
+        "precio" : 1950,
+        "foto" : "/anuncios/XiaomiScooter.jpg"
+    }
+]}
