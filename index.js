@@ -6,7 +6,8 @@ const server = require('http').Server(app);
 const path = require('path');
 const i18n = require('i18n');
 
-require('./lib/connMongoDB');
+//require('./lib/connMongoDB');
+require('./lib/connMysql');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
@@ -27,6 +28,8 @@ i18n.configure({
 app.use(i18n.init);
 
 //Poner las rutas debajo del i18n
+app.use('/lar', require('./routes/lar'));
+app.use('/adobe', require('./routes/adobe'));
 app.use('/usuarios', require('./routes/usuarios'));
 app.use('/anuncios', require('./routes/anuncios'));
 
