@@ -60,7 +60,7 @@ router.get('/', async (req, res, next) =>{
       var numerador=0;
     for (let index = 0; index < clientes.length; index++) {
         const cliente = await new Promise((resolve, reject) => {
-            mysql.query('SELECT NU_CTE,CD_IDENT,CD_DOC_IDENT,IM_LIMITE_CONSUMO FROM SPIKE.LAR WHERE NU_CTE = ?', clientes[index], function (err, results) {
+            mysql.query('SELECT NU_CTE nuCte,CD_IDENT cdIdent,CD_DOC_IDENT cdDocIdent,IM_LIMITE_CONSUMO imLimiteConsumo FROM SPIKE.LAR WHERE NU_CTE = ?', clientes[index], function (err, results) {
                 if (err) reject(err)
                 if(results){
                     resolve(results[0]);
