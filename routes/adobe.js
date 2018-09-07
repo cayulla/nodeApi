@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) =>{
             console.log('Datos Encontrados:')
             
             return res.json({
-                sucess:true,
+                success:true,
                 data:results
             });
         })  
@@ -22,7 +22,7 @@ router.get('/', async (req, res, next) =>{
     } catch (error) {
         console.log(error)
       return res.json({
-        sucess:false,
+        success:false,
         error:{
             code:401,
             message:error
