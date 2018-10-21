@@ -19,6 +19,25 @@ anuncioSchema.statics.list = (filters, limit,fields)=>{
     return query.exec();
 }
 
+anuncioSchema.statics.saveData = async (listaAnuncios)=>{
+    for(var i = 0; i<listaAnuncios.length; i++){
+        //console.log(listaAnuncios[i]);
+
+        console.log("for saveData out");
+        await new Promise((resolve, reject) => {
+
+            (new Anuncio(listaAnuncios[i])).save((err,resultado)=>{
+                console.log("for saveData in");
+                if (err) reject(err)
+                if(resultado){
+                    resolve(resultado);
+                }
+            });
+        });
+      }   
+    
+}
+
 //Inicializacion de la BD
 anuncioSchema.statics.cargaDataFile = async (dataFile)=>{
 

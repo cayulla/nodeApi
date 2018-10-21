@@ -6,7 +6,7 @@ const server = require('http').Server(app);
 const path = require('path');
 const i18n = require('i18n');
 
-//require('./lib/connMongoDB');
+require('./lib/connMongoDB');
 require('./lib/connMysql');
 
 app.set('views', path.join(__dirname, 'views'));
@@ -44,6 +44,6 @@ app.use((err, req, res, next)=>{
     });
 })
 
-server.listen(3002,()=>{
+server.listen(3000,()=>{
     console.log('Iniciado la zona de APIs');
 })

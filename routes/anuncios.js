@@ -30,16 +30,41 @@ router.get('/', async (req, res, next) =>{
     
 });
 
- router.post('/',(req,res,next)=>{
-   const anuncio = new Anuncio(req.body);
-    console.log(anuncio);
-   anuncio.save((err,resultado)=>{
-       if(err){
-           next(err);
-           return;
-       }
-       res.json({success:true, result: resultado});
-   });
+router.post('/', async (req, res, next) =>{
+
+  try {
+    const listaAnuncios=req.body.anuncios;
+    var listaResultados = new Array();
+    for(var i = 0; i<listaAnuncios.length; i++){
+      console.log("for saveData out ("+i+")");
+      const  resultado = await new Promise((resolve, reject) => {
+          (new Anuncio(listaAnuncios[i])).save((err,resultado)=>{
+              console.log("for saveData in");
+              if (err) reject(err)
+              if(resultado){
+                  resolve(resultado);
+              }
+          });
+      });
+      listaResultados.push(resultado);
+    }  
+    
+    //const resultado = await Anuncio.saveData(req.body.anuncios);
+    console.log(listaResultados);
+    console.log("For terminado");
+    res.json({success:true, result: listaResultados});
+
+  } catch (error) {
+    console.log("Catch");
+    console.log(error);
+    return res.json({
+      sucess:false,
+      error:{
+          code:401,
+          message:error
+      }
+    });
+  }
 });
 
 module.exports = router;
